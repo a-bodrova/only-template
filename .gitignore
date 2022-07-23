@@ -1,15 +1,4 @@
-/node_modules
+dist
+build
 
-# Build
-/build
-/dist
-
-# Files
-.idea
-.DS_Store
-
-# dev environment
-/dev
-
-# temp-files
-/bloki-master*
+node_modules
