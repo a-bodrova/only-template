@@ -1,0 +1,4 @@
+mixin button(props)
+    button.button(class=props.classes type='button')&attributes(attributes)=props.text
+        if props.svg
+            +svg(props.svg)

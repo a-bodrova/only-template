@@ -1,0 +1,5 @@
+mixin modal(props)
+    .modal&attributes(attributes)
+        +button({ text: 'Закрыть', classes: ['colored', 'close-button'] })
+        .modal__body
+            block

@@ -1,0 +1,5 @@
+mixin slide-counter(props)
+    .slide-counter(class=props.class)&attributes(attributes)
+        +button({ text: '-', classes: ['colored', 'circle-minus'] }).slide-counter__minus
+        span.slide-counter__span
+        +button({ text: '+', classes: ['colored', 'circle-plus'] }).slide-counter__plus

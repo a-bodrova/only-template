@@ -1,0 +1,55 @@
+.button {
+    $root: &;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    border-radius: 30px;
+
+    &.colored {
+        padding: 20px 40px;
+        background-color: $color-btn-colored;
+        color: $white;
+
+        &:hover {
+            background-color: $color-btn-colored-active;
+        }
+    }
+
+    &.circle,
+    &.circle-minus,
+    &.circle-plus {
+        @include flex-center;
+        padding: 0;
+        font-size: 1.25rem;
+
+        & {
+            @include sizes(60px);
+        }
+
+        &-minus,
+        &-plus {
+            @include sizes(41px);
+        }
+    }
+
+    &.bordered {
+        background-color: $white;
+        color: $color-slider-main;
+        border: 2px solid $color-btn-bordered;
+    }
+
+    &.shadowed {
+        @include sizes(60px);
+        background-color: $white;
+        color: $color-btn-colored;
+        box-shadow: 0px 0px 15px rgba(56, 119, 238, 0.1);
+
+        &:hover {
+            box-shadow: 0px 0px 15px rgba(56, 119, 238, 0.4);
+        }
+
+        & svg {
+            @include sizes(10px, 18px);
+            stroke: $color-btn-colored;
+        }
+    }
+}

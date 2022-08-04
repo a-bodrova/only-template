@@ -17,6 +17,12 @@
     @include h1;
 }
 
+.slider__title {
+    @include font(36, 28, 24, 24);
+    line-height: 1.33;
+    color: $color-slider-main;
+}
+
 
 // Обычный текст
 

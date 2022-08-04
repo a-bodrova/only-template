@@ -1,0 +1,15 @@
+mixin slider(props)
+    .slider&attributes(attributes)
+        h2.slider__title= dataJson.slider.title
+        +counter
+        +button({ text: 'Открыть', classes: ['open-button', 'colored'] })
+        +modal
+            +button({ classes: ['shadowed', 'circle', 'slide-left'], svg: 'arrow-left' })
+            .swiper
+                .swiper-wrapper
+                    each slide in dataJson.slider.slides
+                        .swiper-slide
+                            .swiper-slide__wrapper
+                                +img({ src: slide.src, alt: slide.class })
+                                +slide-counter({ class: slide.class })
+            +button({ classes: ['shadowed', 'circle', 'slide-right'], svg: 'arrow-right' })

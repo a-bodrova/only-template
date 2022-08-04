@@ -1,0 +1,28 @@
+.modal {
+    $root: &;
+    @include flex-column($gap: vh(50));
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $white;
+    padding: 32px;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s;
+
+    &.open {
+        transform: scale(1);
+        opacity: 1;
+        transition: transform 0.3s;
+    }
+
+    &__body {
+        width: 100%;
+        @include flex-row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

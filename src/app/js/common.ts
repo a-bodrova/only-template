@@ -14,8 +14,8 @@ requireAll(require.context('../../assets/icons', true, /\.svg$/));
 setVhCssVariable();
 resize(setVhCssVariable);
 
-export const header = new Header(getComponent('header'));
-export const footer = new Footer(getComponent('footer'));
+// export const header = new Header(getComponent('header'));
+// export const footer = new Footer(getComponent('footer'));
 
 barba.use(barbaPrefetch);
 
