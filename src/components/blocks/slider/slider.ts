@@ -8,62 +8,29 @@ import { slides } from "@/variables/slides";
 import Swiper, { Navigation } from "swiper";
 
 export default class Slider extends Component {
-    pageCounter: HTMLSpanElement | null;
-    openButton: Button;
-    modal: Modal;
+    pageCounter?: HTMLSpanElement | null;
+    openButton?: Button;
+    modal?: Modal;
     swiper?: Swiper;
     slideCounters?: SlideCounter[];
     counterSubscription?: Subscription;
 
     constructor(element: ComponentProps) {
         super(element);
-        this.pageCounter = this.getElement("counter") ?? null;
-        this.modal = new Modal(getComponent("modal", this.nRoot)) ?? null;
-        this.openButton =
-            new Button(getComponent("open-button", this.nRoot)) ?? null;
+        this.pageCounter = this.getElement("counter");
 
-        if (this.openButton) {
-            this.openButton.setListener(this.modal.open);
-        }
+        if (getComponent("modal", this.nRoot).component) {
+            this.modal = new Modal(getComponent("modal", this.nRoot));
 
-        if (this.modal) {
-            this.swiper = new Swiper('.swiper', {
-                modules: [Navigation],
-                navigation: {
-                    nextEl: '.slide-right',
-                    prevEl: '.slide-left',
-                },
-                slidesPerView: 1,
-                speed: 500,
-                centeredSlides: true,
-            });
-                if (this.swiper) {
-                this.slideCounters = slides.map(
-                    (item) =>
-                        new SlideCounter(
-                            getComponent(
-                                item.class,
-                                this.modal.nRoot
-                            )
-                        )
+            if (getComponent("open-button", this.nRoot).component) {
+                this.openButton = new Button(
+                    getComponent("open-button", this.nRoot)
                 );
-                    this.swiper.on(
-                    "activeIndexChange",
-                    (swiper) => {
-                        const index = swiper.activeIndex;
-
-                        if (this.slideCounters) {
-                            this.setCounterValue(
-                                this.slideCounters[index].value
-                            );
-                        }
-                    }
-                );
-
-                this.counterSubscription = merge(
-                    ...this.slideCounters.map((item) => item.value$)
-                ).subscribe(this.setCounterValue);
+                if (this.openButton) {
+                    this.openButton.setListener(this.modal.open);
+                }
             }
+            this.initSlider();
         }
     }
 
@@ -72,6 +39,43 @@ export default class Slider extends Component {
             this.pageCounter.textContent = value.toString();
         }
     };
+
+    initSlider() {
+        if (this.modal) {
+            const swiperContainer = this.getElement("swiper");
+            if (swiperContainer) {
+                this.swiper = new Swiper(swiperContainer, {
+                    modules: [Navigation],
+                    navigation: {
+                        nextEl: ".slide-right",
+                        prevEl: ".slide-left",
+                    },
+                    slidesPerView: 1,
+                    speed: 500,
+                    centeredSlides: true,
+                });
+                    this.slideCounters = slides.map(
+                        (item) =>
+                            new SlideCounter(
+                                getComponent(item.class, this.modal?.nRoot)
+                            )
+                    );
+                    this.swiper.on("activeIndexChange", (swiper) => {
+                        const index = swiper.activeIndex;
+
+                        if (this.slideCounters) {
+                            this.setCounterValue(
+                                this.slideCounters[index].value
+                            );
+                        }
+                    });
+
+                    this.counterSubscription = merge(
+                        ...this.slideCounters.map((item) => item.value$)
+                    ).subscribe(this.setCounterValue);
+            }
+        }
+    }
 
     destroy = () => {
         // Destroy functions

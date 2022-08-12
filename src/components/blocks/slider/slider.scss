@@ -7,9 +7,8 @@
     &__counter {
         padding-bottom: 30px;
     }
-}
 
-.swiper {
+    .swiper {
     @include flex-row;
     justify-content: space-between;
     align-items: center;
@@ -30,3 +29,6 @@
         z-index: 100;
     }
 }
+}
+
+

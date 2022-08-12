@@ -5,7 +5,7 @@ mixin slider(props)
         +button({ text: 'Открыть', classes: ['open-button', 'colored'] })
         +modal
             +button({ classes: ['shadowed', 'circle', 'slide-left'], svg: 'arrow-left' })
-            .swiper
+            .swiper.slider__swiper
                 .swiper-wrapper
                     each slide in dataJson.slider.slides
                         .swiper-slide
