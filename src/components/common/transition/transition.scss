@@ -1,0 +1,48 @@
+.transition {
+    $root: &;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateY(-100vh);
+    pointer-events: none;
+
+    &.iter {
+        transform: translateY(0);
+        transition: transform 0.6s ease-in;
+    }
+
+        &__top,
+        &__bottom {
+            background-color: $color-preloader;
+            position: absolute;
+            width: 100vw;
+            height: 50vh;
+            left: 0;
+            pointer-events: none;
+        }
+
+        &__top {
+            top: 0;
+
+            &.trans {
+                transition: transform 0.8s ease-out;
+                transition-delay: 0.6s;
+                transform: translateY(-50vh);
+            }
+        }
+
+        &__bottom {
+            bottom: 0;
+            height: 51vh;
+
+            &.trans {
+                transition: transform 0.8s ease-out;
+                transition-delay: 0.6s;
+                transform: translateY(51vh);
+            }
+    }
+}

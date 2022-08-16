@@ -7,6 +7,7 @@ import {getComponent, resize, setVhCssVariable} from '@/helpers/helpers';
 import Header from "@/components/common/header/header";
 import Footer from "@/components/common/footer/footer";
 import Preloader from '@/components/common/preloader/preloader';
+import Transition from '@/components/common/transition/transition';
 
 // SVG
 const requireAll = (r: __WebpackModuleApi.RequireContext) => r.keys().forEach(r);
@@ -18,6 +19,7 @@ resize(setVhCssVariable);
 export const header = new Header(getComponent('header'));
 // export const footer = new Footer(getComponent('footer'));
 const preloader = new Preloader(getComponent('preloader'));
+const transition = new Transition(getComponent('transition'));
 
 barba.use(barbaPrefetch);
 
@@ -38,7 +40,15 @@ barba.init({
     transitions: [{
         once() {
             preloader.hideSelf();
-        }
+        },
+        leave() {
+            transition.showSelf();
+        },
+        enter() {
+            setTimeout(() => {
+                transition.hideSelf();
+            }, 1500);
+        },
     }
     ]
 });
