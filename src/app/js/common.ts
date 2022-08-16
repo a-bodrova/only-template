@@ -14,12 +14,14 @@ requireAll(require.context('../../assets/icons', true, /\.svg$/));
 setVhCssVariable();
 resize(setVhCssVariable);
 
-// export const header = new Header(getComponent('header'));
+export const header = new Header(getComponent('header'));
 // export const footer = new Footer(getComponent('footer'));
 
 barba.use(barbaPrefetch);
 
-barba.hooks.beforeEnter((_data) => {});
+barba.hooks.beforeEnter((_data) => {
+    header.navigation?.setActiveLink(_data?.next.url.path);
+});
 
 barba.hooks.afterEnter((_data) => {});
 
