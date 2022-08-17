@@ -43,11 +43,12 @@ barba.init({
         },
         leave() {
             transition.showSelf();
+            return new Promise<void>((resolve) => setTimeout(resolve, 600));
         },
         enter() {
             setTimeout(() => {
                 transition.hideSelf();
-            }, 1500);
+            }, 600);
         },
     }
     ]
