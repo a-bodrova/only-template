@@ -1,0 +1,4 @@
+mixin nav(props)
+    nav&attributes(attributes)
+        each item, index in props.list
+            a(href=item.path).nav__item= item.name

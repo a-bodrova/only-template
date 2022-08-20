@@ -26,7 +26,7 @@ abstract class Component {
         this.nRootName = name;
     }
 
-    public getElement = <T extends HTMLElement>(name: string): T | undefined => {
+    public getElement = <T extends HTMLElement>(name: string): T | undefined => {;
         return this.nRoot.querySelector<T>(`.${this.nRootName}__${name}`) ?? undefined;
     };
 

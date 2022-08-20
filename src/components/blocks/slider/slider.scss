@@ -1,0 +1,34 @@
+.slider {
+    $root: &;
+    @include flex-column($gap: 70px);
+    align-items: center;
+    justify-content: center;
+
+    &__counter {
+        padding-bottom: 30px;
+    }
+
+    .swiper {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+
+    &-wrapper {
+        width: vw(1400);
+
+        & .swiper-slide {
+
+            &__wrapper {
+                width: vw(1400);
+            }
+        }
+    }
+
+    & .button {
+        z-index: 100;
+    }
+}
+}
+
+

@@ -1,0 +1,18 @@
+.slide-counter {
+    $root: &;
+    width: 100%;
+    @include flex-row($gap: 50px);
+    justify-content: center;
+    margin-top: 50px;
+
+    &__span {
+        @include sizes(40px);
+        @include flex-center;
+        background-color: $white;
+        color: $color-slider-main;
+        border-radius: 50%;
+        border: 2px solid $color-btn-bordered;
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+}

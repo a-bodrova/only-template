@@ -1,0 +1,25 @@
+.nav {
+    $root: &;
+    @include flex-row($gap: vw(40));
+    font-family: $font-roboto;
+
+    &__item {
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: $color-header-nav;
+
+        &.active {
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: $black;
+            }
+        }
+    }
+}
